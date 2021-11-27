@@ -104,7 +104,7 @@ Lancez l’exécution de vos différents manifests afin de déployer les différ
 
 Ci-dessous un exemple de description des qualifications souhaitées pour un poste de Devops 
 
-![](images/offre_emploi.png)
+![](images/offre_emploi.jpeg)
 
 **NB** : Bien vouloir preter attention aux qualités encadrées en jaune ci-dessus en jaune, vous vous rendez compte en effet que maitrisez les technologies seulement ne suffit pas, il faut en plus de ca avoir un esprit très créatif, de très bonnes capacités redactionnelles pour rediger vos différents rapports et également des qualités de pédagogue qui vous aideront à parfaire les explications de vos actions dans vos différents rapports afin de faciliter leur compréhension. 
 
