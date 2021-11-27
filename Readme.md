@@ -81,7 +81,7 @@ Afin de réduire le nombre de taches manuelles, nous souhaiterons qu’au démar
 
 Ce fichier doit être situé au niveau du container dans le répertoire : /pgadmin4/servers.json 
 
-![](images/server_def.png)
+![](images/server_def.jpeg)
 
 
 ### **d. Déploiement des différentes applications** 
