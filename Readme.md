@@ -36,22 +36,22 @@ Ci-dessous un aperçu du site vitrine attendu.
 Il s’agit en effet d’une application web python utilisant le module Flask. Les étapes à suivre pour la conteneurisation de cette application sont les suivantes : 
 
 3) Image de base : python:3.6-alpine
-3) Définir le répertoire ***/opt** comme répertoire de travail 
-3) Installer le module Flask à l’aide de ***pip install**
-3) Créer les variables d’environnement **ODOO_URL** et **PGADMIN_URL** afin de permettre la définition de ces url lors du lancement du container 
-3) Lancer l’application **app.py** dans le **ENTRYPOINT** grâce à la commande ***python**  
+3) Définir le répertoire `/opt` comme répertoire de travail 
+3) Installer le module Flask à l’aide de `pip install`
+3) Créer les variables d’environnement `ODOO_URL` et `PGADMIN_URL` afin de permettre la définition de ces url lors du lancement du container 
+3) Lancer l’application `app.py` dans le `ENTRYPOINT` grâce à la commande `python`  
 
 Une fois le Dockerfile crée, Buildez le et lancer un container test permettant d’aller sur les sites web officiels de chacune de ces applications (site web officiels fournis ci-dessus). 
 
-**Nom de l’image** : ic-webapp ;*  
-**tag:** 1.0*  
-**container test_name**: test-ic-webapp* 
+**Nom de l’image :**  ic-webapp ;*  
+**tag :** 1.0*  
+**container test_name :** test-ic-webapp* 
 
 Une fois le test terminé, supprimez ce container test et poussez votre image sur votre registre Docker hub. 
 
 ## **3) Déploiement des différentes applications dans un cluster Kubernetes.** 
 
- **a. Architecture** 
+### **a. Architecture** 
 
 Les applications ou services seront déployées dans un cluster Minikube, donc à un seul nœud et devront respecter l’architecture suivante. 
 
@@ -60,14 +60,14 @@ Les applications ou services seront déployées dans un cluster Minikube, donc �
 En vous basant sur cette architecture logicielle, bien vouloir identifier en donnant le type et le rôle de chacune des ressources (A…H)  mentionnées dans cette architecture. 
 
 
- **b. Déploiement de l’application Odoo** 
+### **b. Déploiement de l’application Odoo** 
 
 Comme décrite ci-dessus, Odoo est une application web de type 2 tier contenant différents modules facilitant la gestion administrative d’une société. 
 
 En Vous servant des différents liens mentionnés ci-dessus, déployer Odoo à l’aide des images docker correspondantes et assurez vous que les données de la base de données Odoo soit persistantes et sauvegardées dans un répertoire de votre choix sur votre hôte. **NB**: respectez l’architecture ci-dessus 
 
 
-**c. Déploiement PgAdmin** 
+### **c. Déploiement PgAdmin** 
 
 Comme ci-dessus, servez-vous de la documentation de déploiement de PgAdmin sous forme de container afin de déployer votre application. 
 
@@ -81,7 +81,8 @@ Ce fichier doit être situé au niveau du container dans le répertoire : /pgadm
 
 ![](images/server_def.png)
 
- **4. Déploiement des différentes applications** 
+
+### **d. Déploiement des différentes applications** 
 
 En vous servant des données ci-dessus, créez les différents manifests correspondants aux ressources nécessaires au bon fonctionnement de l’application tout en respectant l’architecture fournie (Nbre de réplicas et persistance de données). 
 
@@ -90,7 +91,7 @@ Notez également que l’ensemble de ces ressources devront être crées dans un
 **NB** : Etant donné que vos manifests pourront être publics (pousser vers un repo Git ), bien vouloir prendre les mesures nécessaires afin d’utiliser les ressources adéquates permettant de cacher vos informations sensibles. 
 
 
- **5. Test de fonctionnement et rapport final** 
+ ### **e. Test de fonctionnement et rapport final** 
 
 Lancez l’exécution de vos différents manifests afin de déployer les différents services ou applications demandés, testez le bon fonctionnement de vos différentes application et n’hésitez pas à prendre des captures d’écran le plus possible afin de consolider votre travail dans un rapport final qui présentera dans les moindre détails ce que vous avez fait. 
 
