@@ -1,0 +1,3 @@
+ODOO_URL: https://odoo.comm
+PGADMIN_URL: https://pgadmin.org
+version: 1.0
