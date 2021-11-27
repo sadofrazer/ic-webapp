@@ -108,6 +108,7 @@ L'objectif de ICGROUP est en effet de mettre sur pied un pipeline CI/CD permetta
 
 Pour ce projet, on aura besoin de 03 serveurs hébergées soit dans le cloud ou en On Premises (VirtualBox, VMWare…) pour ceux qui n’ont pas de comptes cloud (AWS, AZURE ou autres).
 Les serveurs nécessaires sont les suivants :
+
         3) **Serveur 1** : Jenkins (AWS, t2.medium, docker_jenkins : [ https://github.com/sadofrazer/jenkins-frazer.git ](https://github.com/sadofrazer/jenkins-frazer.git) )
         3) **Serveur 2** : Applications web site vitrine + pgadmin4 (AWS, t2.micro)
         3) **Serveur 3** : Application Odoo (AWS, t2.micro)
@@ -117,9 +118,11 @@ Les serveurs nécessaires sont les suivants :
 
 Afin de faciliter le déploiement de nos application dans notre pipeline Jenkins, nous allons créer des rôles ansible à l’aide de l’IAC docker (Docker-compose) et Ansible.
 Les étapes sont les suivantes :
+
     3) Créer un docker-compose permettant de déployer entièrement l’application Odoo tout en créant un réseau docker et un volume pour faire persister les données de la BDD
     3) Créer un docker-compose permettant de déployer l’application pgadmin avec les paramètres décrits dans la partie1 (fichier servers.json et persistance des données).
     3) A l’aide de ces docker-compose comme Template, créer deux rôles ansible que vous appellerez odoo_role et pgadmin_role, dans ces rôles vous devez :
+
         4) Variabiliser le nom du réseau et du volume qui sera créé dans docker
         4) Variabiliser le répertoire de montage pour le volume, permettant à l’utilisateur de définir s’il le souhaite un autre chemin de fichier en local sur son serveur où il souhaite stocker les données de la BDD Odoo 
         4) Variabiliser le nom des services et des containers qui seront créés par ce docker-compose.
@@ -133,6 +136,7 @@ Afin de davantage automatiser notre solution, vous devez créer à la racine de 
 Ce fichier devra contenir 03 lignes et 02 colonnes ( séparateur de colonne étant l’espace)
 Exemple 
 ![](images/releases.jpeg)
+
 Par la suite, vous devez modifier votre Dockerfile afin qu’il puisse lors du build récupérer les valeurs des URL du fichier releases.txt et les fournir automatiquement aux variables d’environnement crées dans le Dockerfile.
 Cela devra se faire grâce aux commandes awk et export. Ci-dessous un exemple.
 ![](images/export_var.jpeg)
