@@ -60,11 +60,13 @@ Les applications ou services seront déployées dans un cluster Minikube, donc �
 En vous basant sur cette architecture logicielle, bien vouloir identifier en donnant le type et le rôle de chacune des ressources (A…H)  mentionnées dans cette architecture. 
 
 
+
 ### **b. Déploiement de l’application Odoo** 
 
 Comme décrite ci-dessus, Odoo est une application web de type 2 tier contenant différents modules facilitant la gestion administrative d’une société. 
 
 En Vous servant des différents liens mentionnés ci-dessus, déployer Odoo à l’aide des images docker correspondantes et assurez vous que les données de la base de données Odoo soit persistantes et sauvegardées dans un répertoire de votre choix sur votre hôte. **NB**: respectez l’architecture ci-dessus 
+
 
 
 ### **c. Déploiement PgAdmin** 
@@ -91,16 +93,18 @@ Notez également que l’ensemble de ces ressources devront être crées dans un
 **NB** : Etant donné que vos manifests pourront être publics (pousser vers un repo Git ), bien vouloir prendre les mesures nécessaires afin d’utiliser les ressources adéquates permettant de cacher vos informations sensibles. 
 
 
+
  ### **e. Test de fonctionnement et rapport final** 
 
 Lancez l’exécution de vos différents manifests afin de déployer les différents services ou applications demandés, testez le bon fonctionnement de vos différentes application et n’hésitez pas à prendre des captures d’écran le plus possible afin de consolider votre travail dans un rapport final qui présentera dans les moindre détails ce que vous avez fait. 
+
 
 
  ## **4) ANNEXE** 
 
 Ci-dessous un exemple de description des qualifications souhaitées pour un poste de Devops 
 
-![](images/offre_emploi.jpeg)
+![](images/offre_emploi.png)
 
 **NB** : Bien vouloir preter attention aux qualités encadrées en jaune ci-dessus en jaune, vous vous rendez compte en effet que maitrisez les technologies seulement ne suffit pas, il faut en plus de ca avoir un esprit très créatif, de très bonnes capacités redactionnelles pour rediger vos différents rapports et également des qualités de pédagogue qui vous aideront à parfaire les explications de vos actions dans vos différents rapports afin de faciliter leur compréhension. 
 
