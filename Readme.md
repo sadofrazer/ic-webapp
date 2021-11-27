@@ -109,7 +109,7 @@ L'objectif de ICGROUP est en effet de mettre sur pied un pipeline CI/CD permetta
 Pour ce projet, on aura besoin de 03 serveurs hébergées soit dans le cloud ou en On Premises (VirtualBox, VMWare…) pour ceux qui n’ont pas de comptes cloud (AWS, AZURE ou autres).
 Les serveurs nécessaires sont les suivants :
 
-        1) **Serveur 1** : Jenkins (AWS, t2.medium, docker_jenkins : [ https://github.com/sadofrazer/jenkins-frazer.git ](https://github.com/sadofrazer/jenkins-frazer.git) )
+        1) **Serveur 1** : Jenkins AWS, t2.medium, docker_jenkins : [ https://github.com/sadofrazer/jenkins-frazer.git ](https://github.com/sadofrazer/jenkins-frazer.git)
         2) **Serveur 2** : Applications web site vitrine + pgadmin4 (AWS, t2.micro)
         3) **Serveur 3** : Application Odoo (AWS, t2.micro)
 
