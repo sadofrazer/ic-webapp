@@ -38,6 +38,7 @@ Il s’agit en effet d’une application web python utilisant le module Flask. L
 3) Image de base : `python:3.6-alpine`
 3) Définir le répertoire `/opt` comme répertoire de travail 
 3) Installer le module Flask à l’aide de `pip install`
+3) Exposer le port `8080` qui est celui utilisé par défaut par l'application
 3) Créer les variables d’environnement `ODOO_URL` et `PGADMIN_URL` afin de permettre la définition de ces url lors du lancement du container 
 3) Lancer l’application `app.py` dans le `ENTRYPOINT` grâce à la commande `python`  
 
@@ -49,7 +50,7 @@ Une fois le Dockerfile crée, Buildez le et lancer un container test permettant 
 
 Une fois le test terminé, supprimez ce container test et poussez votre image sur votre registre Docker hub. 
 
-## **3) Déploiement des différentes applications dans un cluster Kubernetes.** 
+## **3) Partie 1 : Déploiement des différentes applications dans un cluster Kubernetes.** 
 
 ### **a. Architecture** 
 
@@ -93,10 +94,55 @@ Notez également que l’ensemble de ces ressources devront être crées dans un
 **NB** : Etant donné que vos manifests pourront être publics (pousser vers un repo Git ), bien vouloir prendre les mesures nécessaires afin d’utiliser les ressources adéquates permettant de cacher vos informations sensibles. 
 
 
-
  ### **e. Test de fonctionnement et rapport final** 
 
 Lancez l’exécution de vos différents manifests afin de déployer les différents services ou applications demandés, testez le bon fonctionnement de vos différentes application et n’hésitez pas à prendre des captures d’écran le plus possible afin de consolider votre travail dans un rapport final qui présentera dans les moindre détails ce que vous avez fait. 
+
+## **3) Partie 2 : Mise en place d'un pipeline CI/CD à l'aide de JENKINS et de ANSIBLE.** 
+L'objectif de ICGROUP est en effet de mettre sur pied un pipeline CI/CD permettant l'intégration et le déploiement en continu de cette solution sur leurs différentes machines en environnement de production (03 serveurs hébergés soit en On Premises soit dans le cloud AWS)
+
+### **a. Pipeline Stages** 
+![](images/pipeline.jpeg)
+
+### **b. Infrastructure** 
+
+Pour ce projet, on aura besoin de 03 serveurs hébergées soit dans le cloud ou en On Premises (VirtualBox, VMWare…) pour ceux qui n’ont pas de comptes cloud (AWS, AZURE ou autres).
+Les serveurs nécessaires sont les suivants :
+        3) **Serveur 1** : Jenkins (AWS, t2.medium, docker_jenkins : [ https://github.com/sadofrazer/jenkins-frazer.git ](https://github.com/sadofrazer/jenkins-frazer.git) )
+        3) **Serveur 2** : Applications web site vitrine + pgadmin4 (AWS, t2.micro)
+        3) **Serveur 3** : Application Odoo (AWS, t2.micro)
+
+
+### **c. Automatisation du déploiement**
+
+Afin de faciliter le déploiement de nos application dans notre pipeline Jenkins, nous allons créer des rôles ansible à l’aide de l’IAC docker (Docker-compose) et Ansible.
+Les étapes sont les suivantes :
+    3) Créer un docker-compose permettant de déployer entièrement l’application Odoo tout en créant un réseau docker et un volume pour faire persister les données de la BDD
+    3) Créer un docker-compose permettant de déployer l’application pgadmin avec les paramètres décrits dans la partie1 (fichier servers.json et persistance des données).
+    3) A l’aide de ces docker-compose comme Template, créer deux rôles ansible que vous appellerez odoo_role et pgadmin_role, dans ces rôles vous devez :
+        4) Variabiliser le nom du réseau et du volume qui sera créé dans docker
+        4) Variabiliser le répertoire de montage pour le volume, permettant à l’utilisateur de définir s’il le souhaite un autre chemin de fichier en local sur son serveur où il souhaite stocker les données de la BDD Odoo 
+        4) Variabiliser le nom des services et des containers qui seront créés par ce docker-compose.
+
+**NB** : Ces rôles devront être appelés dans votre pipeline lors de la phase de déploiement avec les variabilisations qui vont bien.
+
+
+### **d. Mise en place du pipeline**
+
+Afin de davantage automatiser notre solution, vous devez créer à la racine de votre repo, un fichier appelé releases.txt dans lequel vous enterrez les données sur votre application ( ODOO_URL, PGADMIN_URL et Version)
+Ce fichier devra contenir 03 lignes et 02 colonnes ( séparateur de colonne étant l’espace)
+Exemple 
+![](images/releases.jpeg)
+Par la suite, vous devez modifier votre Dockerfile afin qu’il puisse lors du build récupérer les valeurs des URL du fichier releases.txt et les fournir automatiquement aux variables d’environnement crées dans le Dockerfile.
+Cela devra se faire grâce aux commandes awk et export. Ci-dessous un exemple.
+![](images/export_var.jpeg)
+Après avoir crée le Dockerfile qui va bien, Vous devrez créer le JenkinsFile permettant de Builder l’application, la tester (à vous de trouver les différents tests à réaliser sur chacune des applications) et la déployer en environnement de production.
+**NB** : vous devrez utiliser les mêmes mécanismes afin de récupérer la valeur de la variable version dans le fichier releases.txt qui devra être utilisé comme tag sur votre image.
+
+
+### **e. Test de fonctionnement et rapport final**
+
+Lancez l’exécution de votre pipeline manuellement pour une première fois, ensuite automatiquement après modification de votre fichier releases.txt (version : 1.1). Vérifiez que toutes les applis sont déployées et fonctionnent correctement. N’hésitez pas à prendre des captures d’écran le plus possible afin de consolider votre travail dans un rapport final qui présentera dans les moindre détails ce que vous avez fait.
 
 
 
@@ -106,7 +152,7 @@ Ci-dessous un exemple de description des qualifications souhaitées pour un post
 
 ![](images/offre_emploi.jpeg)
 
-**NB** : Bien vouloir preter attention aux qualités encadrées en jaune ci-dessus en jaune, vous vous rendez compte en effet que maitrisez les technologies seulement ne suffit pas, il faut en plus de ca avoir un esprit très créatif, de très bonnes capacités redactionnelles pour rediger vos différents rapports et également des qualités de pédagogue qui vous aideront à parfaire les explications de vos actions dans vos différents rapports afin de faciliter leur compréhension. 
+**NB** : Bien vouloir preter attention aux qualités encadrées en jaune ci-dessus, vous vous rendez compte en effet que maitriser les technologies seulement ne suffit pas, il faut en plus de ca avoir un esprit très créatif, de très bonnes capacités redactionnelles pour rediger vos différents rapports et également des qualités de pédagogue qui vous aideront à parfaire les explications de vos actions dans vos différents rapports afin de faciliter leur compréhension. 
 
 Compte tenu de tout cela, je vous invite tous à donner l’impotance à ce volet « rapport » de votre projet final, car c’est également une partie très importante qui devra pouvoir décrire le contenu de l’ensemble de votre travail.  
 
