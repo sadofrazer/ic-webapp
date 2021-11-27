@@ -1,0 +1,91 @@
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}">
+    <!-- <icone titre -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/img-icon1.png') }}">
+
+    <title>HOME | IC GROUP</title>
+
+    <!-- link vers bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/bootstrap.min.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/c996623ee1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- Début de la première partie (les titres de la page) -->
+    <div class="titre jumbotron">
+        <i class="fab fa-youtube fa-2x"></i>
+        <h1>IC GROUP</h1><br>
+        <span class="text"><strong>Intranet &nbsp;Applications</strong></span>
+        <br>
+        
+    </div>
+    <!-- Fin de la première partie -->
+
+    <!-- Début de la deuxième partie (les menus et la search bar) -->
+    <!-- <div class="menu_full"> -->
+
+    <nav class="navbar navbar-expand-sm navbar-light bg-light p-2 m-2">
+
+        <form class="form-group m-0" action="#" method="POST">
+            <input class="p-2 m-1" type="search" name="search_txt" value="" id="search_bar" placeholder="Rechercher">
+            <label for="search_bar">
+
+                <a href=""><button type="button"
+                        class="btn btn-success">Search</button></a>
+            </label>
+        </form>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="menu collapse navbar-collapse" id="navigation">
+            <ul class="p-3 navbar-nav">
+                <li class="op-menu1 nav-item"><i class="fas fa-microphone fa-2x"></i></li>
+                <li class="op-menu2 nav-item"><i class="fas fa-video fa-2x"></i></li>
+                <li class="op-menu3 nav-item"><i class="fas fa-bell fa-2x"></i></li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <!-- Fin de la deuxième partie  -->
+
+
+    <div class="thumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 mx-auto" style="height: 180px; width: 300px; margin: 10px; position: relative;">
+                   <a href="{{ odoo_url }}"><div id="img_container">
+                        <img class="img" src="{{ url_for('static', filename='images/odoo.jpg') }}" alt="Film1">
+                        <span class="opt3">Odoo</span>
+                    </div></a>
+                </div>
+                <div class="col-sm-6 mx-auto" style="height: 180px; width: 300px; margin: 10px; position: relative;">
+                    <a href="{{ pgadmin_url }}"><div id="img_container">
+                        <img class="img" src="{{ url_for('static', filename='images/PgAdmin4.png') }}" alt="Film2">
+                        <span class="opt3">Postgres</span>
+                    </div></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
