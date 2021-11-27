@@ -35,12 +35,12 @@ Ci-dessous un aperçu du site vitrine attendu.
 
 Il s’agit en effet d’une application web python utilisant le module Flask. Les étapes à suivre pour la conteneurisation de cette application sont les suivantes : 
 
-3) Image de base : `python:3.6-alpine`
-3) Définir le répertoire `/opt` comme répertoire de travail 
+1) Image de base : `python:3.6-alpine`
+2) Définir le répertoire `/opt` comme répertoire de travail 
 3) Installer le module Flask à l’aide de `pip install`
-3) Exposer le port `8080` qui est celui utilisé par défaut par l'application
-3) Créer les variables d’environnement `ODOO_URL` et `PGADMIN_URL` afin de permettre la définition de ces url lors du lancement du container 
-3) Lancer l’application `app.py` dans le `ENTRYPOINT` grâce à la commande `python`  
+4) Exposer le port `8080` qui est celui utilisé par défaut par l'application
+5) Créer les variables d’environnement `ODOO_URL` et `PGADMIN_URL` afin de permettre la définition de ces url lors du lancement du container 
+6) Lancer l’application `app.py` dans le `ENTRYPOINT` grâce à la commande `python`  
 
 Une fois le Dockerfile crée, Buildez le et lancer un container test permettant d’aller sur les sites web officiels de chacune de ces applications (site web officiels fournis ci-dessus). 
 
@@ -109,8 +109,8 @@ L'objectif de ICGROUP est en effet de mettre sur pied un pipeline CI/CD permetta
 Pour ce projet, on aura besoin de 03 serveurs hébergées soit dans le cloud ou en On Premises (VirtualBox, VMWare…) pour ceux qui n’ont pas de comptes cloud (AWS, AZURE ou autres).
 Les serveurs nécessaires sont les suivants :
 
-        3) **Serveur 1** : Jenkins (AWS, t2.medium, docker_jenkins : [ https://github.com/sadofrazer/jenkins-frazer.git ](https://github.com/sadofrazer/jenkins-frazer.git) )
-        3) **Serveur 2** : Applications web site vitrine + pgadmin4 (AWS, t2.micro)
+        1) **Serveur 1** : Jenkins (AWS, t2.medium, docker_jenkins : [ https://github.com/sadofrazer/jenkins-frazer.git ](https://github.com/sadofrazer/jenkins-frazer.git) )
+        2) **Serveur 2** : Applications web site vitrine + pgadmin4 (AWS, t2.micro)
         3) **Serveur 3** : Application Odoo (AWS, t2.micro)
 
 
@@ -119,13 +119,12 @@ Les serveurs nécessaires sont les suivants :
 Afin de faciliter le déploiement de nos application dans notre pipeline Jenkins, nous allons créer des rôles ansible à l’aide de l’IAC docker (Docker-compose) et Ansible.
 Les étapes sont les suivantes :
 
-    3) Créer un docker-compose permettant de déployer entièrement l’application Odoo tout en créant un réseau docker et un volume pour faire persister les données de la BDD
-    3) Créer un docker-compose permettant de déployer l’application pgadmin avec les paramètres décrits dans la partie1 (fichier servers.json et persistance des données).
+    1) Créer un docker-compose permettant de déployer entièrement l’application Odoo tout en créant un réseau docker et un volume pour faire persister les données de la BDD
+    2) Créer un docker-compose permettant de déployer l’application pgadmin avec les paramètres décrits dans la partie1 (fichier servers.json et persistance des données).
     3) A l’aide de ces docker-compose comme Template, créer deux rôles ansible que vous appellerez odoo_role et pgadmin_role, dans ces rôles vous devez :
-
-        4) Variabiliser le nom du réseau et du volume qui sera créé dans docker
-        4) Variabiliser le répertoire de montage pour le volume, permettant à l’utilisateur de définir s’il le souhaite un autre chemin de fichier en local sur son serveur où il souhaite stocker les données de la BDD Odoo 
-        4) Variabiliser le nom des services et des containers qui seront créés par ce docker-compose.
+        a) Variabiliser le nom du réseau et du volume qui sera créé dans docker
+        b) Variabiliser le répertoire de montage pour le volume, permettant à l’utilisateur de définir s’il le souhaite un autre chemin de fichier en local sur son serveur où il souhaite stocker les données de la BDD Odoo 
+        c) Variabiliser le nom des services et des containers qui seront créés par ce docker-compose.
 
 **NB** : Ces rôles devront être appelés dans votre pipeline lors de la phase de déploiement avec les variabilisations qui vont bien.
 
