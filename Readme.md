@@ -31,21 +31,21 @@ Ci-dessous un aperçu du site vitrine attendu.
 **NB :** L’image** crée devra permettre de lancer un container permettant d’héberger ce site web et ayant les liens adéquats permettant d’accéder à nos applications internes 
 
 
-## ** 2) Conteneurisation de l’application web.** 
+## **2) Conteneurisation de l’application web.** 
 
 Il s’agit en effet d’une application web python utilisant le module Flask. Les étapes à suivre pour la conteneurisation de cette application sont les suivantes : 
 
 3) Image de base : python:3.6-alpine
-3) Définir le répertoire /opt comme répertoire de travail 
-3) Installer le module Flask à l’aide de pip install
-3) Créer les variables d’environnement ODOO\_URL et PGADMIN\_URL afin de permettre la définition de ces url lors du lancement du container 
-3) Lancer l’application app.py dans le ENTRYPOINT grâce à la commande python  
+3) Définir le répertoire ***/opt** comme répertoire de travail 
+3) Installer le module Flask à l’aide de ***pip install**
+3) Créer les variables d’environnement **ODOO_URL** et **PGADMIN_URL** afin de permettre la définition de ces url lors du lancement du container 
+3) Lancer l’application **app.py** dans le **ENTRYPOINT** grâce à la commande ***python**  
 
 Une fois le Dockerfile crée, Buildez le et lancer un container test permettant d’aller sur les sites web officiels de chacune de ces applications (site web officiels fournis ci-dessus). 
 
-***Nom de l’image** : ic-webapp ;*  
-***tag:** 1.0*  
-***container test\_name**: test-ic-webapp* 
+**Nom de l’image** : ic-webapp ;*  
+**tag:** 1.0*  
+**container test_name**: test-ic-webapp* 
 
 Une fois le test terminé, supprimez ce container test et poussez votre image sur votre registre Docker hub. 
 
@@ -55,7 +55,7 @@ Une fois le test terminé, supprimez ce container test et poussez votre image su
 
 Les applications ou services seront déployées dans un cluster Minikube, donc à un seul nœud et devront respecter l’architecture suivante. 
 
-![](synoptique_Kubernetes.jpeg)
+![](images/synoptique_Kubernetes.jpeg)
 
 En vous basant sur cette architecture logicielle, bien vouloir identifier en donnant le type et le rôle de chacune des ressources (A…H)  mentionnées dans cette architecture. 
 
@@ -79,30 +79,7 @@ Afin de réduire le nombre de taches manuelles, nous souhaiterons qu’au démar
 
 Ce fichier doit être situé au niveau du container dans le répertoire : /pgadmin4/servers.json 
 
-{ 
-
-   "Servers": { 
-      "1": { 
-          "Name": "Minimally Defined Server",             
-          "Group": "Server Group 1", 
-          "Port": 5432, 
-          "Username": "postgres", 
-          "Host": "localhost", 
-          "SSLMode": "prefer", 
-          "MaintenanceDB": "postgres" 
-        },
-      "2": { 
-          "Name": "Minimally Defined Server",             
-          "Group": "Server Group 1", 
-          "Port": 5432, 
-          "Username": "postgres", 
-          "Host": "localhost", 
-          "SSLMode": "prefer", 
-          "MaintenanceDB": "postgres" 
-        } 
-    } 
-} 
-
+![](images/server_def.png)
 
  **4. Déploiement des différentes applications** 
 
@@ -122,7 +99,7 @@ Lancez l’exécution de vos différents manifests afin de déployer les différ
 
 Ci-dessous un exemple de description des qualifications souhaitées pour un poste de Devops 
 
-![](offre_emploi.jpeg)![](carre_jaune.png)
+![](images/offre_emploi.jpeg)
 
 **NB** : Bien vouloir preter attention aux qualités encadrées en jaune ci-dessus en jaune, vous vous rendez compte en effet que maitrisez les technologies seulement ne suffit pas, il faut en plus de ca avoir un esprit très créatif, de très bonnes capacités redactionnelles pour rediger vos différents rapports et également des qualités de pédagogue qui vous aideront à parfaire les explications de vos actions dans vos différents rapports afin de faciliter leur compréhension. 
 
